@@ -1,0 +1,5 @@
+.column {
+  flex: 1;
+  border: 1px solid red; }
+  .column.empty {
+    min-height: 50px; }
