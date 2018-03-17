@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Sortable from 'react-sortablejs';
 
 import Block from 'components/template/block/Block';
-import { addBlock } from 'actions/blocks';
+import { addBlock, sortingBlocks } from 'actions/blocks';
 
 import './template.css';
 
@@ -19,11 +19,24 @@ class Template extends Component {
                 pull: true,
                 put: true
               },
+              handle: '.block__handle',
               sort: true,
               onAdd: (e) => {
                 e.item.remove();
                 this.props.addBlock({type: e.clone.dataset.type, newIndex: e.newIndex})
               },
+              // Changed sorting within list
+              onUpdate: (e) => {
+                const oldIndex = +e.oldIndex;
+                const newIndex = +e.newIndex;
+
+                this.props.sortingBlocks({
+                  oldIndex,
+                  newIndex
+                });
+                // // Удаляем дублирующийся элемент из ДОМ дерева
+                // e.item.remove();
+              }
             }}
             className="c-sortable"
         >
@@ -47,5 +60,8 @@ export default connect(
     addBlock: (data) => {
       dispatch(addBlock(data))
     },
+    sortingBlocks: (data) => {
+      dispatch(sortingBlocks(data))
+    }
   })
 )(Template);

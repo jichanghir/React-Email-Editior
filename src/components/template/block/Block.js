@@ -20,6 +20,7 @@ class Block extends Component {
             id={columnID}
           />
         )}
+        <div className="block__handle">sort</div>
       </div>
     );
   }

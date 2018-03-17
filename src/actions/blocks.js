@@ -22,3 +22,11 @@ export const addBlock = ({type, newIndex}) => (dispatch) => {
 		}
 	});
 };
+
+export const sortingBlocks = ({oldIndex, newIndex}) => ({
+	type: 'SORTING_BLOCKS',
+	payload: {
+		oldIndex,
+        newIndex
+	}
+});

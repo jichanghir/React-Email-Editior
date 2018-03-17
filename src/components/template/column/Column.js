@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Sortable from 'react-sortablejs';
 
 import Element from 'components/template/element/Element';
-import { sortElement } from 'actions/elements';
+import { startSortingElements, endSortingElements } from 'actions/columns';
+// import { setSortedElement }  from 'actions/sortedElement';
 
 import './column.css';
 
@@ -26,34 +27,44 @@ class Column extends Component {
                 put: true
               },
               sort: true,
+              // на onStart должны сначала удалить элемент с состояния
+              onStart: (e) => {
+                const fromColumnId = +e.from.closest('.column').dataset.id;
+                const elemId = +e.item.dataset.id;
+
+                this.props.startSortingElements({
+                  fromColumnId,
+                  elemId
+                });
+              },
+              // Element is dropped into the list from another list
               onAdd: (e) => {
-                console.log('onSort', e);
-                
-                const fromColumnId = column.id;
-                const toColumnId = e.to.closest('.column').dataset.id;
-                const elemId = e.item.dataset.id;
+                const toColumnId = +e.to.closest('.column').dataset.id;
+                const elemId = +e.item.dataset.id;
+                const newIndex = +e.newIndex;
 
-                e.item.remove();
-                this.props.sortElement({
-                  fromColumnId, 
+                this.props.endSortingElements({
                   toColumnId,
-                  elemId
+                  elemId,
+                  newIndex
                 });
+                // Удаляем дублирующийся элемент из ДОМ дерева
+                e.item.remove();
               },
+              // Changed sorting within list
               onUpdate: (e) => {
-                console.log('onUpdate', e);
+                const toColumnId = +e.to.closest('.column').dataset.id;
+                const elemId = +e.item.dataset.id;
+                const newIndex = +e.newIndex;
 
-                const fromColumnId = column.id;
-                const toColumnId = e.to.closest('.column').dataset.id;
-                const elemId = e.item.dataset.id;
-
-                e.item.remove();
-                this.props.sortElement({
-                  fromColumnId, 
+                this.props.endSortingElements({
                   toColumnId,
-                  elemId
+                  elemId,
+                  newIndex
                 });
-              },
+                // Удаляем дублирующийся элемент из ДОМ дерева
+                e.item.remove();
+              }
             }}
             className="c-sortable"
         >
@@ -74,8 +85,11 @@ export default connect(
     column: state.columns.find((column) => column.id === ownProps.id)
   }),
   dispatch => ({
-    sortElement: (data) => {
-      dispatch(sortElement(data))
+    startSortingElements: (data) => {
+      dispatch(startSortingElements(data))
     },
+    endSortingElements: (data) => {
+      dispatch(endSortingElements(data))
+    }
   })
 )(Column);
