@@ -1,23 +1,33 @@
 const defaultState = [
 	{
 		id: 111,
-		content: 'element 111'
+		type: 4,
+		data: { 
+			text: 'Разделитель'
+		}
 	},
 	{
 		id: 112,
-		content: 'element 112'
+		type: 3,
+		data: { 
+			text: 'Кнопка'
+		}
 	},
 	{
 		id: 22,
-		content: 'element 22'
+		type: 1,
+		data: { 
+			text: 'Текст'
+		}
 	},
 ];
 
 
 export default function(state = defaultState, action) {
 	switch(action.type) {
-		case 'ADD_ELEMENT' :
+		case 'INIT_NEW_ELEMENT' : {
 			return [...state, action.payload];
+		}
 
 		default :
 			return state;

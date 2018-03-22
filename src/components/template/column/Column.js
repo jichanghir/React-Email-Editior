@@ -55,7 +55,7 @@ class Column extends Component {
                   this.props.addElement({
                     toColumnId,
                     newIndex,
-                    type: e.clone.dataset.type
+                    type: +e.clone.dataset.type
                   })
                 }
                 

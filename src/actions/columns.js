@@ -27,6 +27,15 @@ export const endSortingElements = ({toColumnId, elemId, newIndex}) => ({
 
 export const addElement = ({toColumnId, newIndex, type}) => (dispatch) => {
 	// сначала инициализируем элемент, и добавляем его в state
-	const id = Math.random();
-	dispatch(initNewElement({id, type}));
+	const elemId = Math.random();
+	dispatch(initNewElement({id: elemId, type}));
+
+	dispatch({
+		type: 'END_SORTING_ELEMENTS', 
+		payload: {
+			toColumnId,
+			elemId,
+			newIndex
+		}
+	});
 };

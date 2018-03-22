@@ -10,7 +10,7 @@ class Element extends Component {
         className="element"
         data-id={element.id}
       >
-        {element.content}
+        {element.data.text}
       </div>
     );
   }
