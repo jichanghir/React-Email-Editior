@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Sortable from 'react-sortablejs';
 
-import { addBlock } from 'actions/blocks';
+import './cp-blocks.css';
 
 class Blocks extends Component {
 
@@ -10,29 +10,19 @@ class Blocks extends Component {
     return (
       <div className="cp-blocks">
         <Sortable
-            options={{
-              group: {
-                name: 'block',
-                pull: 'clone',
-                put: false
-              },
-              sort: false,
-              // onStart: (e) => startSortPoints.call(null, e),
-              // onAdd: (e) => sortAdd.call(null, e),
-              // onUpdate: (e) => sortUpdate.call(null, e),
-              // onEnd: (e) => this.props.addBlock(e.clone.dataset.type),
-            }}
-            // onChange={(order, sortable, evt) => {
-            //   console.log('order', order);
-            //   console.log('sortable', sortable);
-            //   console.log('evt', evt);
-            //     // this.props.addBlock(order);
-            // }}
+          options={{
+            group: {
+              name: 'block',
+              pull: 'clone',
+              put: false
+            },
+            sort: false
+          }}
         >
-          <div data-type='1'>some Block</div>
-          <div data-type='2'>some Block</div>
-          <div data-type='3'>some Block</div>
-          <div data-type='4'>some Block</div>
+          <div data-type='1' className="cp-blocks__block">One column</div>
+          <div data-type='2' className="cp-blocks__block">Two columns</div>
+          <div data-type='3' className="cp-blocks__block">Three columns</div>
+          <div data-type='4' className="cp-blocks__block">Four columns</div>
         </Sortable>
       </div>
     );
@@ -41,11 +31,9 @@ class Blocks extends Component {
 
 export default connect(
   (state, ownProps) => ({
-    // block: state.blocks.find((block) => block.id === ownProps.id)
+
   }),
   (dispatch) => ({
-    addBlock: (type) => {
-      dispatch(addBlock(type))
-    },
+
   })
 )(Blocks);

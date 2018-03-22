@@ -1,0 +1,26 @@
+.tabs {
+  height: 30px;
+  display: flex;
+
+  &__tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+    border-bottom: 1px solid #f2f2f2;
+    cursor: pointer;
+    
+
+    font-size: 10px;
+    font-weight: bold;
+    color: #b2b2b2;
+    text-transform: uppercase;
+
+    &.active, &:hover {
+      border-bottom: 1px solid #222;
+      color: #222;
+    }
+  }
+}

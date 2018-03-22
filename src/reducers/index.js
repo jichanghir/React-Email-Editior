@@ -3,11 +3,11 @@ import { combineReducers } from 'redux';
 import blocks from './blocks';
 import columns from './columns';
 import elements from './elements';
-import sortedElement from './sortedElement';
+import controlPanel from './controlPanel';
 
 export default combineReducers({
 	blocks,
 	columns,
 	elements,
-	sortedElement
+	controlPanel
 });

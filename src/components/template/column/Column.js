@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Sortable from 'react-sortablejs';
 
 import Element from 'components/template/element/Element';
-import { startSortingElements, endSortingElements } from 'actions/columns';
-// import { setSortedElement }  from 'actions/sortedElement';
+import { startSortingElements, endSortingElements, addElement } from 'actions/columns';
 
 import './column.css';
 
@@ -43,11 +42,23 @@ class Column extends Component {
                 const elemId = +e.item.dataset.id;
                 const newIndex = +e.newIndex;
 
-                this.props.endSortingElements({
-                  toColumnId,
-                  elemId,
-                  newIndex
-                });
+                // При сортироке уже есть elemId
+                if (elemId) {
+                  this.props.endSortingElements({
+                    toColumnId,
+                    elemId,
+                    newIndex
+                  });
+                }
+                // При добавлении нового нету elemId
+                else {
+                  this.props.addElement({
+                    toColumnId,
+                    newIndex,
+                    type: e.clone.dataset.type
+                  })
+                }
+                
                 // Удаляем дублирующийся элемент из ДОМ дерева
                 e.item.remove();
               },
@@ -90,6 +101,9 @@ export default connect(
     },
     endSortingElements: (data) => {
       dispatch(endSortingElements(data))
+    },
+    addElement: (data) => {
+      dispatch(addElement(data))
     }
   })
 )(Column);

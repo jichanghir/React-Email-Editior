@@ -1,3 +1,11 @@
+export const initNewElement = ({id, type}) => ({
+	type: 'INIT_NEW_ELEMENT',
+	payload: {
+		id,
+		type
+	}
+});
+
 
 
 // export const sortElement = ({fromColumnId, toColumnId, elemId}) => (dispatch) => {

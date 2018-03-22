@@ -1,3 +1,5 @@
+import { initNewElement } from './elements';
+
 export const addColumn = (id) => ({
 	type: 'ADD_COLUMN',
 	payload: {
@@ -22,3 +24,9 @@ export const endSortingElements = ({toColumnId, elemId, newIndex}) => ({
 		newIndex
 	}
 });
+
+export const addElement = ({toColumnId, newIndex, type}) => (dispatch) => {
+	// сначала инициализируем элемент, и добавляем его в state
+	const id = Math.random();
+	dispatch(initNewElement({id, type}));
+};

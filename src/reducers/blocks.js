@@ -6,7 +6,7 @@ const defaultState = [
 ];
 
 export default function(state = defaultState, action) {
-	switch(action.type) {
+	switch (action.type) {
 		case 'ADD_BLOCK' : {
 			let newState = [...state];
 			newState.splice(action.meta.newIndex, 0, action.payload);
@@ -14,7 +14,6 @@ export default function(state = defaultState, action) {
 			return newState;
 		}
 			
-
 		case 'SORTING_BLOCKS' : {
 			let newState = [...state];
 			const elemMass = newState.splice(action.payload.oldIndex, 1);
@@ -22,7 +21,6 @@ export default function(state = defaultState, action) {
 
 			return newState;
 		}
-			
 
 		default :
 			return state;

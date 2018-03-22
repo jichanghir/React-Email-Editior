@@ -1,0 +1,10 @@
+.cp-blocks {
+
+	&__block {
+		cursor: move;
+
+		&:hover {
+			background-color: Azure;
+		}
+	}
+}
