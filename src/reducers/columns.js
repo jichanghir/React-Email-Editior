@@ -1,12 +1,12 @@
 const defaultState = [
-	{
-		id: 11,
-		elements: [111, 112]
-	},
-	{
-		id: 12,
-		elements: [22]
-	},
+	// {
+	// 	id: 11,
+	// 	elements: [111, 112]
+	// },
+	// {
+	// 	id: 12,
+	// 	elements: [22]
+	// },
 ];
 
 export default function(state = defaultState, action) {
@@ -14,7 +14,7 @@ export default function(state = defaultState, action) {
 		case 'ADD_COLUMN' :
 			return [...state, action.payload];
 
-		case 'START_SORTING_ELEMENTS' : 
+		case 'START_SORTING_ELEMENTS' :
 			return state.map((column) => {
 				if (column.id === action.payload.fromColumnId) {
 					const elements = column.elements.filter((elementId) => elementId !== action.payload.elemId);
@@ -24,10 +24,10 @@ export default function(state = defaultState, action) {
 					}
 				}
 				else return column;
-				
+
 			});
 
-		case 'END_SORTING_ELEMENTS' : 
+		case 'END_SORTING_ELEMENTS' :
 			return state.map((column) => {
 				if (column.id === action.payload.toColumnId) {
 

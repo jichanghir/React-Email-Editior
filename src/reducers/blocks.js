@@ -1,8 +1,8 @@
 const defaultState = [
-	{
-		id: 1,
-		columns: [11, 12]
-	}
+	// {
+	// 	id: 1,
+	// 	columns: [11, 12]
+	// }
 ];
 
 export default function(state = defaultState, action) {
@@ -10,10 +10,10 @@ export default function(state = defaultState, action) {
 		case 'ADD_BLOCK' : {
 			let newState = [...state];
 			newState.splice(action.meta.newIndex, 0, action.payload);
-			
+
 			return newState;
 		}
-			
+
 		case 'SORTING_BLOCKS' : {
 			let newState = [...state];
 			const elemMass = newState.splice(action.payload.oldIndex, 1);

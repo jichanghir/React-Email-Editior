@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Text from './text/Text';
+import Image from './image/Image';
+import Button from './button/Button';
+import Separator from './separator/Separator';
+import Video from './video/Video';
+import Socials from './socials/Socials';
+
 class Element extends Component {
 
   render() {
-    const { element } = this.props; 
-    return (
-      <div 
-        className="element"
-        data-id={element.id}
-      >
-        {element.data.text}
-      </div>
-    );
+    const type = this.props.element ? this.props.element.type : null;
+
+    switch (type) {
+      case 1 : return <Text element={this.props.element}/>;
+      case 2 : return <Image element={this.props.element}/>;
+      case 3 : return <Button element={this.props.element}/>;
+      case 4 : return <Separator element={this.props.element}/>;
+      case 5 : return <Video element={this.props.element}/>;
+      case 6 : return <Socials element={this.props.element}/>;
+      default : return <div></div>
+    }
   }
 }
 

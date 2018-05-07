@@ -14,15 +14,15 @@ class ControlPanel extends Component {
   render() {
     return (
       <div className="control-panel">
-        <Tabs 
-          tabs={['structure', 'elements']} 
-          selectedTab={this.props.selectedCategory} 
+        <Tabs
+          tabs={['structure', 'elements']}
+          selectedTab={this.props.selectedCategory}
           onClick={(tabName) => this.props.setCategory(tabName)}
         />
 
         {this.props.selectedCategory === 'structure' && <Blocks />}
         {this.props.selectedCategory === 'elements' && <Elements />}
-        
+
       </div>
     );
   }
@@ -36,14 +36,5 @@ export default connect(
     setCategory: (selectedCategory) => {
       dispatch(setCategory(selectedCategory))
     }
-    // addTrack: (trackName) => {
-    //   dispatch(addTrack(trackName))
-    // },
-    // findTrack: (trackName) => {
-    //   dispatch(findTrack(trackName))
-    // },
-    // getTracks: () => {
-    //   dispatch(getTracks());
-    // }
   })
 )(ControlPanel);
