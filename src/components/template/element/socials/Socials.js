@@ -22,8 +22,31 @@ class Socials extends Component {
           <div
             className="element"
             data-id={element.id}
+            style={{
+                paddingLeft: element.data.paddingLeft,
+                paddingRight: element.data.paddingRight,
+                paddingTop: element.data.paddingTop,
+                paddingBottom: element.data.paddingBottom,
+                textAlign: element.data.align
+            }}
           >
-            {element.data.text}
+            {element.data.socials.map((social) =>
+                <div
+                    style={{
+                        marginLeft: +element.data.innerPadding / 2,
+                        marginRight: +element.data.innerPadding / 2,
+                        display: 'inline-block'
+                    }}
+                >
+                    <img
+                        src={social.srcs[element.data.style]}
+                        style={{
+                            width: element.data.width
+                        }}
+                        alt=""
+                    />
+                </div>
+            )}
           </div>
         );
     };

@@ -59,7 +59,12 @@ export const initNewElement = ({id, type}) => (dispatch) => {
 	// Разделитель
 	type === 4 && (
 		data = {
-			text: 'Разделитель'
+			height: '1px',
+			color: '#cccccc',
+			paddingLeft: '0px',
+			paddingRight: '0px',
+			paddingTop: '10px',
+			paddingBottom: '10px'
 		}
 	);
 
@@ -73,7 +78,37 @@ export const initNewElement = ({id, type}) => (dispatch) => {
 	// Соц сети
 	type === 6 && (
 		data = {
-			text: 'Соц сети'
+			align: 'center',
+			style: '1',
+			width: '40px',
+			innerPadding: '10',
+			socials: [
+				{
+					type: 'vkontakte',
+					srcs: {
+						'1': 'https://s.digitalcontact.com/social/cl_cr_vkontakte.png'
+					},
+					link: ''
+				},
+				{
+					type: 'facebook',
+					srcs: {
+						'1': 'https://s.digitalcontact.com/editor/assets/minimalist-basic/soc/cl_cr_facebook.png'
+					},
+					link: ''
+				},
+				{
+					type: 'telegram',
+					srcs: {
+						'1': 'https://s.digitalcontact.com/editor/assets/minimalist-basic/soc/cl_cr_telegram.png'
+					},
+					link: ''
+				}
+			],
+			paddingLeft: '0px',
+			paddingRight: '0px',
+			paddingTop: '10px',
+			paddingBottom: '10px'
 		}
 	);
 

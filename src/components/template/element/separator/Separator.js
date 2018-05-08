@@ -22,8 +22,19 @@ class Separator extends Component {
           <div
             className="element"
             data-id={element.id}
+            style={{
+                paddingLeft: element.data.paddingLeft,
+                paddingRight: element.data.paddingRight,
+                paddingTop: element.data.paddingTop,
+                paddingBottom: element.data.paddingBottom
+            }}
           >
-            {element.data.text}
+            <hr
+                style={{
+                    height: element.data.height,
+                    backgroundColor: element.data.color
+                }}
+            />
           </div>
         );
     };
